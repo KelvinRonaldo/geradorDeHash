@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>HASH JS</title>
+        <script type="text/javascript" src="./js/md5.js"></script>  
+        <script type="text/javascript" src="./js/sh1.js"></script>  
+        <script type="text/javascript" src="./js/sha256.js"></script>  
+        <script type="text/javascript" src="./js/sha512.js"></script>
+        <script type="text/javascript" src="./js/jquery-3.4.1.min.js"></script>
+    </head>
+    <body>
+        <div class="all">
+            <div class="indented flex-center">
+                <div id="entrada" class="caixa-textarea flex-center">
+                    <input type="password" class="hash-textarea" id="input" name="input"/>
+                    <button id="btn-erase-pwd" class="flex-center">
+                        <figure>
+                            <img id="icon-erase-pwd" alt="Erase All" title="Erase All" src="./icons/eraser.png"/>
+                        </figure>
+                    </button>
+                    <button id="btn-view-pwd" class="flex-center btn-view-pwd">
+                        <figure>
+                            <img id="icon-view-pwd" alt="View Password" title="View Password" src="./icons/safe.png"/>
+                        </figure>
+                    </button>
+                </div>
+                <div id="btns-hash" class="flex-center">
+                    <input class="btns btn-MD5" id="btn-MD5" type="button" onclick="document.getElementById('hash').value = hex_md5(document.getElementById('input').value)" value="MD5">
+                    <input class="btns btn-SHA1" id="btn-SHA1" type="button" onclick="document.getElementById('hash').value = hex_sha1(document.getElementById('input').value)" value="SHA-1">
+                    <input class="btns btn-SHA256" id="btn-SHA256" type="button" onclick="document.getElementById('hash').value = hex_sha256(document.getElementById('input').value)" value="SHA-256">
+                    <input class="btns btn-SHA512" id="btn-SHA512" type="button" onclick="document.getElementById('hash').value = hex_sha512(document.getElementById('input').value)" value="SHA-512">
+                </div>
+                <div id="saída" class="caixa-textarea flex-center">
+                    <textarea readonly type="text" class="hash-textarea" id="hash" name="hash"></textarea>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="./js/mask.js"></script>
+    </body>
+</html>
