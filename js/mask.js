@@ -12,8 +12,10 @@ $(document).ready(function(){
                                 .attr("title", "INSEGURO NO MOMENTO")
                                 .attr("alt", "INSEGURO NO MOMENTO");
         }        
-	});
+    });
     
+    // A FAZER arrumar aqui
+    // ARRUMAR arrumar aqui
     //ANIMAÇÃO DE PRESSIONAR BOTÃO
 	function pressButton(button){
 		button.mousedown(function () {
@@ -115,7 +117,5 @@ $(document).ready(function(){
 	pressButton($("#btn-erase-pwd"));
 	$(".btns").each(function(){
 		pressButton($(this));
-    });
-    
-    
+	});
 });

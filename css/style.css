@@ -3,7 +3,10 @@ h4, h5, h6, table, tr, th, td{
     margin: 0;
     padding: 0;
 }
-
+html, body{
+    height: 100%;
+    width: 100%;
+}
 body{
     background-image: linear-gradient(rgb(10, 10, 10), rgb(10, 10, 10), rgb(92, 2, 2));
     background-size: cover;
@@ -18,11 +21,10 @@ body{
 }
 
 @media screen and (min-width: 1000px){
-
+    
     .all{
-        width: fit-content;
-        height: fit-content;
-        margin: auto;
+        height: 100%;
+        width: 100%;
     }
     .indented{
         width: calc(500px * 1.4);
@@ -32,6 +34,7 @@ body{
         top: 100px;
         flex-wrap: wrap;
         border-radius: 15px;
+        margin: auto;
     }
 
     .caixa-textarea{
@@ -168,7 +171,7 @@ body{
         max-width: calc(25px * 1.6);
         max-height: calc(25px * 1.6);
         position: relative;
-        top: -6px;
+        top: -6px; 
     }
 
 
@@ -207,7 +210,7 @@ body{
     
     .all{
         width: 100%;
-        height: max-device-width;
+        height: 2%;
         /* background-color: #6ee221; */
     }
     
