@@ -117,5 +117,35 @@ $(document).ready(function(){
 	pressButton($("#btn-erase-pwd"));
 	$(".btns").each(function(){
 		pressButton($(this));
-	});
+    });
+
+    function random (min, max){
+        return Math.trunc(Math.random() * (max + 1 - min) + min);
+    }
+
+    let characters = "1 2 3 4 5 6 7 8 9 0 - = q w e r t y u i o p [ a s d f g h j k l ç ] \\ z x c v b n m , . / * - + . ! @ # $ % ¨ & * ( ) _ § ª º ° ? : > \< \| \^ \` ç Q W E R T Y U I O P A S D F G H J K L Z X C V B N M Ç ";
+    characters = characters.split(" ");
+    
+    const makePwd = () =>{
+
+        let pwd = "";
+        let maxLength =  random(6, 127);
+        let arrayLength = characters.length;
+        
+        for(let i = 0; i < maxLength; i++){
+            pwd += characters[random(0, arrayLength)];
+        }
+        
+        for(char of characters){
+            console.log(char);
+        }
+        console.log(pwd);
+        
+        return pwd;        
+    }
+
+    $("#btn-make-pwd").click(function(){
+        $("#input").val(makePwd());
+        verifyNumOfCharacters();
+    });
 });
