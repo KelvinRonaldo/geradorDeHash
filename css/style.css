@@ -21,25 +21,146 @@ body{
 }
 
 @media screen and (min-width: 1000px){
+
+    /* #region ALERT*/
+    #div-fade-alert{
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.644);
+        position: fixed;
+        z-index: 999;
+        transition: .2s ease-in;
+        display: none;
+        opacity: 0;
+        visibility: hidden;
+    }
+    #div-alert{
+        width: 400px;
+        height: fit-content;
+        background-color: #fff;
+        margin-top: -150px;
+        border-radius: 15px;
+        flex-wrap: wrap;
+        box-shadow: 3px 3px 5px #ffffff23;
+        
+        font-family: 'agency fb';
+    }
     
+    #div-alert-title,
+    #div-alert-area,
+    #div-alert-btn{
+        width: inherit;
+        display: flex;
+        box-sizing: border-box;
+    }
+    #div-alert-title{
+        height: 50px;
+        background-color: #2e2e2e;
+        border-radius: 10px 10px 0 0;
+        border-bottom: solid 1px #777777;
+
+        font-size: 20px;
+        font-weight: bold;
+        color: #cac6c6;
+    }
+
+    #div-alert-area{
+        height: fit-content;
+        min-height: 60px;
+        background-color: #1f1f1f;
+        align-items: center;
+        justify-content: left;
+        padding: 10px;
+
+        font-size: 19px;
+        color: #ffffff;
+        text-align: justify;
+    }
+    #div-alert-btn{
+        height: 50px;
+        background-color: #2c2c2c;
+        border-radius: 0 0 10px 10px;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 20px;
+        border-top: solid 1px #777777;
+    }
+    #btn-alert-ok{
+        width: 70px;
+        height: 30px;
+        border-radius: 5px;
+        background-color: #2a79e0;
+        border: none;
+        transition: .2s ease-in;
+        cursor: pointer;
+
+        font-size: 15px;
+        color: #ffffff;
+    }
+    #btn-alert-ok:hover{
+        transition: .2s ease-in;
+        background-color: #478de7;
+    }
+    /* #endregion */
+
     .all{
         height: 100%;
         width: 100%;
     }
     .indented{
         width: calc(500px * 1.4);
-        height: calc(280px * 1.4);
+        height: calc(280px * 1.6);
         background-color: rgba(0, 0, 0, 0);
+        /* background-color: rgba(238, 57, 57, 0.904); */
         position: relative;
         top: 100px;
         flex-wrap: wrap;
         border-radius: 15px;
         margin: auto;
     }
-
+    
     .caixa-textarea{
-        width: calc(400px * 1.6);
+        width: calc(400px * 1.5);
         height: fit-content;
+        /* background-color: #6ee221; */
+        flex-wrap: wrap;
+    }
+    
+    #caixa-btn-make-copy-pwd{
+        width: inherit;
+        height: 35px;
+        margin: 5px;    
+    }
+
+    #btn-make-pwd, #btn-copy-pwd{
+        width: 100px;
+        height: 35px;
+        cursor: pointer;
+        outline: none;
+        border-radius: 5px;
+        transition: .2s ease-out;
+        margin-left: 5px;
+        
+        font-family: 'agency fb';
+        font-size: 18px;
+    }
+    
+    .btn-make-pwd, .btn-copy-pwd{
+        color: #ffffff;
+    }
+    .btn-make-pwd{
+        background-color: #19191a;
+        border: outset 2px #dd4422;
+    }
+    .btn-copy-pwd{
+        background-color: #19191a;
+        border: outset 2px #2368c2;
+    }
+    
+    .btn-make-pwd:hover, .btn-copy-pwd:hover{
+        background-color: #1f1f1f;
+        border: solid 3px #ffffff;
+        transition: .2s ease-in;
     }
 
     #btns-hash{
@@ -203,10 +324,37 @@ body{
         width: calc(320px * 1.6);
         height: calc(120px * 1.6);
         background-color: #8181813d;
-        border-radius: 15px;
+        border-radius: 15px 15px 0 0;
     }
+    #btn-copy-hash{
+        width: calc(320px * 1.6);
+        height: 30px;
+
+        border: none;
+        transition: .2s ease-in;
+        cursor: pointer;
+        outline: none;
+
+        font-family: 'agency fb';
+        font-size: 15px;
+    }
+    .btn-copy-hash{
+        background-color: #8181813d;
+        border-radius: 0 0 15px 15px;
+        color: #dedede;
+    }
+    .btn-copy-hash:hover{
+        /* transition: .2s ease-in; */
+        background-color: #81818159;
+    }
+    .btn-copy-hash-disabled{
+        background-color: #81818159;
+        border-radius: 0 0 15px 15px;
+        color: #5c5b5b;
+    }
+
 }
-@media screen and (max-device-width: 800px){
+@media screen and (max-device-width: 800px), screen and (max-width: 1000px){
     
     .all{
         width: 100%;
@@ -363,4 +511,5 @@ body{
         background-color: #81818146;
         border-radius: 15px;
     }
+
 }
