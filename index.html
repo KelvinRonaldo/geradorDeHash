@@ -11,6 +11,7 @@
         <script type="text/javascript" src="./js/sha256.js"></script>  
         <script type="text/javascript" src="./js/sha512.js"></script>
         <script type="text/javascript" src="./js/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="./js/kelvinstrap.js"></script>
     </head>
     <body>
         <div id="div-fade-alert" class="div-fade-alert flex-center">
@@ -44,10 +45,10 @@
                     </div>
                 </div>
                 <div id="btns-hash" class="flex-center">
-                    <input class="btns btn-MD5" id="btn-MD5" type="button" onclick="document.getElementById('hash').value = hex_md5(document.getElementById('input').value)" value="MD5">
-                    <input class="btns btn-SHA1" id="btn-SHA1" type="button" onclick="document.getElementById('hash').value = hex_sha1(document.getElementById('input').value)" value="SHA-1">
-                    <input class="btns btn-SHA256" id="btn-SHA256" type="button" onclick="document.getElementById('hash').value = hex_sha256(document.getElementById('input').value)" value="SHA-256">
-                    <input class="btns btn-SHA512" id="btn-SHA512" type="button" onclick="document.getElementById('hash').value = hex_sha512(document.getElementById('input').value)" value="SHA-512">
+                    <button class="btns btn-MD5" id="btn-MD5" type="button">MD5</button>
+                    <button class="btns btn-SHA1" id="btn-SHA1" type="button">SHA-1</button>
+                    <button class="btns btn-SHA256" id="btn-SHA256" type="button">SHA-256</button>
+                    <button class="btns btn-SHA512" id="btn-SHA512" type="button">SHA-512</button>
                 </div>
                 <div id="saída" class="caixa-textarea flex-center">
                     <textarea readonly type="text" class="hash-textarea" id="hash" name="hash"></textarea>
@@ -56,5 +57,6 @@
             </div>
         </div>
         <script type="text/javascript" src="./js/mask.js"></script>
+        <script type="text/javascript" src="./js/makeHash.js"></script>
     </body>
 </html>

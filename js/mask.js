@@ -4,6 +4,10 @@ $(document).ready(function(){
 	function pressButton(button){
 		button.mousedown(function () {
 			$(this).css("transform", "scale(0.95)").css("transition", ".1s");
+		}).mouseover(function () { 
+			$(this).css("transform", "scale(1)").css("transition", ".1s");
+		}).mouseleave(function () { 
+			$(this).css("transform", "scale(1)").css("transition", ".1s");
 		})
 		.mouseup(function () { 
 			$(this).css("transform", "scale(1)").css("transition", ".1s");
@@ -24,31 +28,8 @@ $(document).ready(function(){
                                 .attr("alt", "INSEGURO NO MOMENTO");
 			enableDisableAButton($("#btn-copy-pwd"), "btn-copy-pwd", false);		
         }        
-	}
-    //BOTAO QUE ATIVA E DESATIVA A VISUALIZAÇÃO DO QUE FOI DIGITADO
-    $("#btn-view-pwd").click(function(){
-		safeUnsafeShowPwdBtn();
-    });
+    }
     
-
-    //ENQUANTO DIGITA
-    $("#input").on("input", function(){
-        nonClickedHashButtons("null");
-        verifyNumOfCharacters();
-    });
-
-    //CLIQUE DO BOTAO DE APAGAR
-    $("#btn-erase-pwd").click(function(){
-        $("#input").val("");
-        $("#hash").val("");
-        nonClickedHashButtons("null");
-        verifyNumOfCharacters();
-		enableDisableAButton($("#btn-copy-pwd"), "btn-copy-pwd", true);
-		enableDisableHashCopy($("#btn-copy-hash"), "#btn-copy-hash", true);
-		$("#input").attr("type", "password");
-		enableDisableViewPwdButton(true);
-    });
-
     //MUDA O ESTILO E DESABILITA O BOTAO CLICADO E HABILITA OS NÃO CLICADOS
     function clickedHashButton(hashType){
         let button = `btn-${hashType}`;
@@ -57,7 +38,7 @@ $(document).ready(function(){
                        .prop("disabled", true);
         nonClickedHashButtons(hashType)
     }
-
+    
     //MUDA O ESTILO E HABILITA DEMAIS BOTOES NÃO CLICADOS
     function nonClickedHashButtons(hashType){
         let btnId = `btn-${hashType}`;
@@ -70,18 +51,6 @@ $(document).ready(function(){
             }
         });
     }
-
-    //CHAMADA DOS BOTOES DE HASH AO SEREM CLICADOS
-    $(".btns").each(function(){
-        let button = $(this).attr("id");
-        let hashType = button.split("-");
-        hashType = hashType[1];
-        $(this).click(function(){
-			clickedHashButton(hashType);
-			enableDisableHashCopy(false);
-        });
-    });
-
 	//FUNÇÃO QUE ATIVA E DESATIVA UM BOTAO INDIVIDUALMENTE
 	function enableDisableAButton(button, btnClass, toDisable){
 		button.prop("disabled", toDisable);
@@ -114,6 +83,7 @@ $(document).ready(function(){
 			enableDisableAllButtons($(this), btnClass, toDisable);
         });
     }
+
     //VERIFICA A QUANTIDADE DE CARACTERES QUE HA NA CAIXA DE TEXTO
     //SE MAIS QUE 0, HABILITA OS BOTOES, DO CONTRATRIO, DESABILITA
     function verifyNumOfCharacters(){
@@ -126,8 +96,11 @@ $(document).ready(function(){
         }
     }
 	
+    
+
+
 	//FUNÇÃO QUE CRIA UMA SENHA ALEATÓRIA
-    const makePwd = () =>{
+    function makePwd(){
         let characters;
         let pwd;
         let maxLength;
@@ -153,11 +126,6 @@ $(document).ready(function(){
             
         return pwd;
     }
-    $("#btn-make-pwd").click(function(){
-        $("#input").val(makePwd());
-        verifyNumOfCharacters();
-	});
-
 	//FUNÇÃO QUE MOSTRA E ESCONDE UM ALET
 	const showHideKAlert = (toDo) =>{
 		if(toDo == "show"){
@@ -183,26 +151,12 @@ $(document).ready(function(){
 		$("#div-alert-area").append(kalertPTag);
 	}
 
-	//CLIQUE DO BOTAO QUE COPIA CONTEÚDO DA CAIXA DE SENHA
-	$("#btn-copy-pwd").click(function(){
-		console.log($("#input").val());
-		if($("#input").val().length > 0){
-			$("#input").select();
-			document.execCommand("copy");
-			$("#input").attr("disabled", true);
-			Kalert("Senha copiada para a área de tranferência.");	
-		}
-	});
-
-	$("#btn-copy-hash").click(function(){
-		console.log($("#hash").val());
-		if($("#hash").val().length > 0){
-			$("#hash").select();
-			document.execCommand("copy");
-			Kalert("Hash copiada para a área de tranferência.");	
-		}
-	});
-
+    const copyTextFrom = (element) =>{
+        element.select();
+        document.execCommand("copy");
+        console.log(element);
+    }
+    //FUNÇÃO QUE ATIVA E DESATIVA CA COPIA DA HASH
 	const enableDisableHashCopy = (toDisable) =>{
 		$("#btn-copy-hash").prop("disabled", toDisable);
 		if(toDisable){
@@ -211,6 +165,74 @@ $(document).ready(function(){
 			$("#btn-copy-hash").removeClass("btn-copy-hash-disabled").addClass("btn-copy-hash");
 		}
 	};
+
+
+
+    //BOTAO QUE ATIVA E DESATIVA A VISUALIZAÇÃO DO QUE FOI DIGITADO
+    $("#btn-view-pwd").click(function(){
+		safeUnsafeShowPwdBtn();
+    });
+
+    //ENQUANTO DIGITA
+    $("#input").on("input", function(){
+        nonClickedHashButtons("null");
+        verifyNumOfCharacters();
+    });
+
+
+    $("#btn-erase-pwd").click(function(){    
+        $("#input").val("");
+    });
+
+    //CLIQUE DO BOTAO DE APAGAR TUDO
+    $("#btn-erase-pwd").dblclick(function(){
+        $("#input").val("");
+        $("#hash").val("");
+        nonClickedHashButtons("null");
+        verifyNumOfCharacters();
+		enableDisableAButton($("#btn-copy-pwd"), "btn-copy-pwd", true);
+		enableDisableHashCopy($("#btn-copy-hash"), "#btn-copy-hash", true);
+		$("#input").attr("type", "password");
+		enableDisableViewPwdButton(true);
+		$("#input").focus();
+    });
+
+
+    //CHAMADA DOS BOTOES DE HASH AO SEREM CLICADOS
+    $(".btns").each(function(){
+        let button = $(this).attr("id");
+        let hashType = button.split("-");
+        hashType = hashType[1];
+        $(this).click(function(){
+			clickedHashButton(hashType);
+			enableDisableHashCopy(false);
+        });
+    });
+
+
+    $("#btn-make-pwd").click(function(){
+        $("#input").val(makePwd());
+        verifyNumOfCharacters();
+	});
+ 
+	//CLIQUE DO BOTAO QUE COPIA CONTEÚDO DA CAIXA DE SENHA
+	$("#btn-copy-pwd").click(function(){
+		console.log($("#input").val());
+		if($("#input").val().length > 0){
+			copyTextFrom($("#input"));
+			$("#input").attr("disabled", true);
+			Kalert("Senha copiada para a área de tranferência.");	
+		}
+	});
+
+    //CLICK DO BOTAO DE COPIAR HASH
+	$("#btn-copy-hash").click(function(){
+		console.log($("#hash").val());
+		if($("#hash").val().length > 0){
+			copyTextFrom($("#hash"));
+			Kalert("Hash copiada para a área de tranferência.");	
+		}
+	});
 
 	//FUNÇÃO DO BOTAO OK DO ALERT
 	$("#btn-alert-ok").click(function(){
@@ -222,16 +244,10 @@ $(document).ready(function(){
 		$("#input").focus();
 	});
 
-    //ATIVAR ANIMAÇÃO DE PRESSIONAR BOTAO
-    pressButton($("#btn-view-pwd"));
-    pressButton($("#btn-erase-pwd"));
-    pressButton($("#btn-make-pwd"));
-	pressButton($("#btn-copy-pwd"));
-	pressButton($("#btn-copy-hash"));
-	pressButton($("#btn-alert-ok"));
-    $(".btns").each(function(){
-		pressButton($(this));
-	});
+    //ATIVAR ANIMAÇÃO DE PRESSIONAR BOTAO EM TODOS OS BOTOES
+    $("button").each(function () {
+        pressButton($(this));
+    });
 
 	//INICIA BOTOES DE COPIA DESABILITADOS
 	enableDisableAButton($("#btn-copy-pwd"), "btn-copy-pwd", true);
@@ -240,6 +256,6 @@ $(document).ready(function(){
     //INICIA OS BOTOES DESABILITADOS
 	verifyNumOfCharacters();
 
-	//INICIA COM O CURSOS DENTRO DA CAIXA DE SENHA
+	//INICIA COM O CURSOR DENTRO DA CAIXA DE SENHA
 	$("#input").focus();
 });
