@@ -292,7 +292,7 @@ body{
         max-width: calc(25px * 1.6);
         max-height: calc(25px * 1.6);
         position: relative;
-        top: -6px; 
+        /* top: -6px;  */
     }
 
 

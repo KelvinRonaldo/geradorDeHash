@@ -8,8 +8,7 @@ $(document).ready(function(){
 			$(this).css("transform", "scale(1)").css("transition", ".1s");
 		}).mouseleave(function () { 
 			$(this).css("transform", "scale(1)").css("transition", ".1s");
-		})
-		.mouseup(function () { 
+		}).mouseup(function () { 
 			$(this).css("transform", "scale(1)").css("transition", ".1s");
 		});
 	}
@@ -102,7 +101,7 @@ $(document).ready(function(){
 	//FUNÇÃO QUE CRIA UMA SENHA ALEATÓRIA
     function makePwd(){
         let characters;
-        let pwd;
+        let pwd = "";
         let maxLength;
         let arrayLength;
 
@@ -113,10 +112,8 @@ $(document).ready(function(){
     
         characters = "\' \" \@ \# \$ \% \+ \´ \` \^ \> \< \| \\ 1 2 3 4 5 6 7 8 9 0 - = ! ¨ & * ( ) _ ¹ ² ³ £ ¢ ¬ § [ { ª ~ ] } º / ? ° ; : . , q w e r t y u i o p a s d f g h j k l ç z x c v b n m Q W E R T Y U I O P A S D F G H J K L Ç Z X C V B N M á à ã â ä é è ê ë í ì î ï ó ò õ ô ö ú ù û ü ý ÿ Á À Ã Â Ä É È Ê Ë Í Ì Î Ï Ó Ò Õ Ô Ö Ú Ù Û Ü Ý Ÿ 1 2 3 4 5 6 7 8 9 0 "+"	 ";
         characters = characters.split(" ");
-
         characters.push(" ");
         
-        pwd = "";
         maxLength = random(6, 127);
         arrayLength = characters.length-1;
 		
@@ -131,17 +128,20 @@ $(document).ready(function(){
 		if(toDo == "show"){
 			$("#div-fade-alert").css("display", "flex");
 			setTimeout(() => {
-				$("#div-fade-alert").css("opacity", 1)
-									.css("visibility", "visible");		
+                $("#div-fade-alert")
+                    .css("opacity", 1)
+                    .css("visibility", "visible");		
 			}, 100);
 		}else if(toDo == "hide"){
-			$("#div-fade-alert").css("opacity", 0)
-								.css("visibility", "hidden");
+            $("#div-fade-alert")
+                .css("opacity", 0)
+                .css("visibility", "hidden");
 			setTimeout(() => {
 				$("#div-fade-alert").css("display", "none");
 			}, 200);
 		}
-	}
+    }
+    
 	//FUNÇÃO QUE CRIA UM ALERT PASSANDO UM TEXTO
 	const Kalert = (text) => {
 		showHideKAlert("show");
@@ -156,6 +156,7 @@ $(document).ready(function(){
         document.execCommand("copy");
         console.log(element);
     }
+    
     //FUNÇÃO QUE ATIVA E DESATIVA CA COPIA DA HASH
 	const enableDisableHashCopy = (toDisable) =>{
 		$("#btn-copy-hash").prop("disabled", toDisable);
@@ -257,5 +258,6 @@ $(document).ready(function(){
 	verifyNumOfCharacters();
 
 	//INICIA COM O CURSOR DENTRO DA CAIXA DE SENHA
-	$("#input").focus();
+    $("#input").focus();
+
 });
